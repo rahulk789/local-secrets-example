@@ -1,0 +1,29 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: justfortesting-es
+  namespace: ml-nonprod
+spec:
+  data: 
+  - remoteRef:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: hello-world/testing/thisisa/longpath/justfortesting
+      property: antoehrtest
+    secretKey: antoehrtest
+  - remoteRef:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: hello-world/testing/thisisa/longpath/justfortesting
+      property: test
+    secretKey: test
+  refreshInterval: 15s
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: vault-backend 
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Retain
+    name: justfortesting-secret
+---
